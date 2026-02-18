@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strata Web — Web Development & Design Agency</title>
+<title>StrataWeb — Web Development & Design Agency</title>
+<link rel="canonical" href="https://strataweb.dev">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -28,7 +29,6 @@ body {
   overflow-x: hidden;
 }
 
-/* NAV */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -47,6 +47,18 @@ nav {
   font-family: 'Playfair Display', serif;
   font-size: 1.45rem;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 0.55rem;
 }
 
 .logo span { color: var(--accent); }
@@ -70,6 +82,7 @@ nav {
   border-radius: 6px;
 }
 
+/* HERO */
 .hero {
   min-height: 100vh;
   padding: 120px 6% 80px;
@@ -77,6 +90,7 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  position: relative;
 }
 
 .hero::before {
@@ -123,6 +137,70 @@ h1 em { color: var(--accent); font-style: italic; }
   display: inline-block;
 }
 
+/* HERO IMAGE COMPOSITION */
+.hero-visual {
+  position: relative;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-img-main {
+  width: 88%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(15,17,23,0.18);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-img-float {
+  position: absolute;
+  bottom: 10px;
+  left: -10px;
+  width: 54%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15,17,23,0.15);
+  border: 4px solid var(--white);
+  z-index: 3;
+}
+
+.hero-badge {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 8px 24px rgba(15,17,23,0.1);
+  z-index: 4;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+
+/* SERVICES */
 .services, .process, .cta-section { padding: 6rem 6%; }
 
 .section-label {
@@ -154,8 +232,23 @@ h1 em { color: var(--accent); font-style: italic; }
 .service-card {
   background: var(--white);
   border: 1px solid var(--border);
-  padding: 2rem;
   border-radius: 12px;
+  overflow: hidden;
+}
+
+.service-card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.service-card-body {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.service-card-body h3 {
+  margin-bottom: 0.4rem;
 }
 
 .process {
@@ -189,28 +282,51 @@ h1 em { color: var(--accent); font-style: italic; }
   margin-bottom: 0.5rem;
 }
 
-.cta-section {
-  text-align: center;
-}
+.cta-section { text-align: center; }
+.cta-section .section-sub { margin: 0 auto 2rem; }
 
 footer {
   background: var(--ink);
   color: #9da3b4;
-  padding: 3rem 6%;
+  padding: 2rem 6%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-footer .logo { color: white; }
+footer .logo { color: white; font-size: 1.2rem; }
+footer .logo img { width: 24px; height: 24px; opacity: 0.8; }
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  font-size: 0.76rem;
+  color: #4b5563;
+}
+
+.footer-meta a {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-meta a:hover { color: #9da3b4; }
+.footer-meta .sep { opacity: 0.4; }
 
 @media(max-width:900px){
   .hero { grid-template-columns: 1fr; }
+  .hero-visual { height: 300px; margin-top: 2rem; }
   .services-grid, .steps, .stats { grid-template-columns: 1fr 1fr; }
 }
 
 @media(max-width:600px){
   .services-grid, .steps, .stats { grid-template-columns: 1fr; }
   .nav-links { display:none; }
+  .footer-meta { flex-wrap: wrap; gap: 0.6rem; }
+  .hero-visual { display: none; }
 }
 </style>
 </head>
@@ -218,11 +334,11 @@ footer .logo { color: white; }
 <body>
 
 <nav>
-  <div class="logo">Strata<span>Web</span></div>
+  <a href="https://strataweb.dev" class="logo"><img src="strataweblogo.png" alt="StrataWeb"><span style="color:var(--ink)">Strata</span><span>Web</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    <li><a href="https://calendly.com/stratawebdev" target="_blank" class="nav-cta">Get a Quote</a></li>
   </ul>
 </nav>
 
@@ -231,11 +347,28 @@ footer .logo { color: white; }
     <div class="hero-tag">✦ Web Development & Design</div>
     <h1>We build websites that <em>scale</em> with your business.</h1>
     <p class="hero-sub">
-      Strata Web crafts high-performance digital experiences designed to generate leads and accelerate growth.
+      StrataWeb crafts high-performance digital experiences designed to generate leads and accelerate growth.
     </p>
     <a href="#contact" class="btn-primary">Start a Project</a>
   </div>
-  <div></div>
+
+  <!-- RIGHT SIDE VISUAL -->
+  <div class="hero-visual">
+    <img
+      class="hero-img-main"
+      src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80"
+      alt="Web design workspace"
+    >
+    <img
+      class="hero-img-float"
+      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
+      alt="Analytics dashboard"
+    >
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Currently accepting projects
+    </div>
+  </div>
 </section>
 
 <section class="services" id="services">
@@ -244,9 +377,27 @@ footer .logo { color: white; }
   <p class="section-sub">Strategy, design, development, and long-term support.</p>
 
   <div class="services-grid">
-    <div class="service-card"><h3>UI & UX Design</h3><p>Modern, conversion-focused design that feels premium and performs.</p></div>
-    <div class="service-card"><h3>Web Development</h3><p>Fast, secure, scalable builds using modern frameworks and best practices.</p></div>
-    <div class="service-card"><h3>E-Commerce</h3><p>High-performing online stores built to convert visitors into customers.</p></div>
+    <div class="service-card">
+      <img class="service-card-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="UI UX Design">
+      <div class="service-card-body">
+        <h3>UI & UX Design</h3>
+        <p>Modern, conversion-focused design that feels premium and performs.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="service-card-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="Web Development">
+      <div class="service-card-body">
+        <h3>Web Development</h3>
+        <p>Fast, secure, scalable builds using modern frameworks and best practices.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="service-card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="E-Commerce">
+      <div class="service-card-body">
+        <h3>E-Commerce</h3>
+        <p>High-performing online stores built to convert visitors into customers.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -271,13 +422,21 @@ footer .logo { color: white; }
 <section class="cta-section" id="contact">
   <div class="section-label">Let's Work Together</div>
   <h2 class="section-title">Ready to build something great?</h2>
-  <p class="section-sub">Email us and we’ll respond within one business day.</p>
-  <a href="mailto:hello@strataweb.com" class="btn-primary">hello@strataweb.com</a>
+  <p class="section-sub">Book a free discovery call — we'll respond within one business day.</p>
+  <a href="https://calendly.com/stratawebdev" target="_blank" class="btn-primary">Book a Free Call</a>
 </section>
 
 <footer>
-  <div class="logo">Strata<span style="color:#6ea8fe">Web</span></div>
-  <div>© 2026 Strata Web. All rights reserved.</div>
+  <a href="https://strataweb.dev" class="logo"><img src="strataweblogo.png" alt="StrataWeb">Strata<span style="color:#1a56db">Web</span></a>
+  <div class="footer-meta">
+    <a href="mailto:hello@strataweb.dev">hello@strataweb.dev</a>
+    <span class="sep">·</span>
+    <a href="tel:2407222434">240-722-2434</a>
+    <span class="sep">·</span>
+    <a href="https://strataweb.dev">strataweb.dev</a>
+    <span class="sep">·</span>
+    <span>© 2026 StrataWeb</span>
+  </div>
 </footer>
 
 </body>
